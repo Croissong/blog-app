@@ -43,6 +43,10 @@ module.exports = function (options) {
      */
     devtool: 'cheap-module-source-map',
 
+    entry: {
+      'state': './src/api/initial_state.ts'
+    },
+    
     /**
      * Options affecting the output of the compilation.
      *
@@ -140,6 +144,8 @@ module.exports = function (options) {
       port: METADATA.port,
       host: METADATA.host,
       historyApiFallback: true,
+      quiet: false,
+      stats: 'errors-only', // none (or false), errors-only, minimal, normal (or true) and verbose
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000

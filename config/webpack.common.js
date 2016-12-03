@@ -55,11 +55,9 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
-
       'polyfills': './src/polyfills.browser.ts',
       'vendor':    './src/vendor.browser.ts',
-      'main':      './src/main.browser.ts'
-
+      'main':      './src/main.browser.ts'      
     },
 
     /*
@@ -220,7 +218,7 @@ module.exports = function (options) {
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
       new HtmlWebpackPlugin({
-        template: 'src/index.html',
+        template: '!!handlebars-loader!src/index.hbs',
         title: METADATA.title,
         chunksSortMode: 'dependency',
         metadata: METADATA,

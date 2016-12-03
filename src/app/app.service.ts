@@ -6,10 +6,10 @@ export type InternalStateType = {
 
 @Injectable()
 export class AppState {
-  _state: InternalStateType = { };
+  _state: InternalStateType = (<any>window).initial_state;
 
   constructor() {
-
+    
   }
 
   // already return a clone of the current state
