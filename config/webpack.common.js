@@ -19,7 +19,8 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-
+const precss = require('precss');
+const cssnext = require('postcss-cssnext');
 /*
  * Webpack Constants
  */
@@ -123,7 +124,7 @@ module.exports = function (options) {
          */
         {
           test: /\.css$/,
-          use: ['to-string-loader', 'css-loader']
+          use: ['to-string-loader', 'css-loader', 'postcss-loader']
         },
 
         /* Raw loader support for *.html
@@ -188,7 +189,7 @@ module.exports = function (options) {
        */
       new ContextReplacementPlugin(
         // The (\\|\/) piece accounts for path separators in *nix and Windows
-        /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
+          /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
         helpers.root('src'), // location of your src
         {
           // your Angular Async Route paths relative to this root directory
@@ -267,27 +268,34 @@ module.exports = function (options) {
        *
        * See: https://gist.github.com/sokra/27b24881210b56bbaff7
        */
-      new LoaderOptionsPlugin({}),
+      new LoaderOptionsPlugin({
+        options: {
+          postcss: [
+            precss(),
+            cssnext()
+          ]
+        }
+      }),
 
       // Fix Angular 2
       new NormalModuleReplacementPlugin(
-        /facade(\\|\/)async/,
+          /facade(\\|\/)async/,
         helpers.root('node_modules/@angular/core/src/facade/async.js')
       ),
       new NormalModuleReplacementPlugin(
-        /facade(\\|\/)collection/,
+          /facade(\\|\/)collection/,
         helpers.root('node_modules/@angular/core/src/facade/collection.js')
       ),
       new NormalModuleReplacementPlugin(
-        /facade(\\|\/)errors/,
+          /facade(\\|\/)errors/,
         helpers.root('node_modules/@angular/core/src/facade/errors.js')
       ),
       new NormalModuleReplacementPlugin(
-        /facade(\\|\/)lang/,
+          /facade(\\|\/)lang/,
         helpers.root('node_modules/@angular/core/src/facade/lang.js')
       ),
       new NormalModuleReplacementPlugin(
-        /facade(\\|\/)math/,
+          /facade(\\|\/)math/,
         helpers.root('node_modules/@angular/core/src/facade/math.js')
       ),
     ],
