@@ -33,7 +33,7 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function (options) {
-  return webpackMerge(commonConfig({env: ENV}), {
+  var config = {
 
     /**
      * Developer tool to enhance debugging
@@ -42,10 +42,6 @@ module.exports = function (options) {
      * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
      */
     devtool: 'cheap-module-source-map',
-
-    entry: {
-      'state': './src/api/initial_state.ts'
-    },
     
     /**
      * Options affecting the output of the compilation.
@@ -59,7 +55,7 @@ module.exports = function (options) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
-      path: helpers.root('dist'),
+      path: helpers.root('../priv/static'),
 
       /**
        * Specifies the name of each output file on disk.
@@ -124,10 +120,7 @@ module.exports = function (options) {
        * See: https://gist.github.com/sokra/27b24881210b56bbaff7
        */
       new LoaderOptionsPlugin({
-        debug: true,
-        options: {
-
-        }
+        debug: true     
       }),
 
     ],
@@ -167,5 +160,7 @@ module.exports = function (options) {
       setImmediate: false
     }
 
-  });
+  };
+  config = webpackMerge(commonConfig({env: ENV}), config); 
+  return config;
 }

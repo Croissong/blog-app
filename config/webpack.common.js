@@ -21,6 +21,7 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const precss = require('precss');
 const cssnext = require('postcss-cssnext');
+const INITIAL_STATE = require('../src/api/state.ts');
 /*
  * Webpack Constants
  */
@@ -37,7 +38,7 @@ const METADATA = {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function (options) {
-  isProd = options.env === 'production';
+  var isProd = options.env === 'production';
   return {
 
     /*
@@ -56,9 +57,9 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
-      'polyfills': './src/polyfills.browser.ts',
-      'vendor':    './src/vendor.browser.ts',
-      'main':      './src/main.browser.ts'      
+      polyfills: './src/polyfills.browser.ts',
+      vendor:    './src/vendor.browser.ts',
+      main:      './src/main.browser.ts'      
     },
 
     /*
@@ -134,8 +135,7 @@ module.exports = function (options) {
          */
         {
           test: /\.html$/,
-          use: 'raw-loader',
-          exclude: [helpers.root('src/index.html')]
+          use: 'raw-loader' 
         },
 
         /* File loader for supporting images, for example, in CSS files.
@@ -156,7 +156,7 @@ module.exports = function (options) {
      */
     plugins: [
       new AssetsPlugin({
-        path: helpers.root('dist'),
+        path: helpers.root('../priv/static'),
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
@@ -206,7 +206,7 @@ module.exports = function (options) {
        */
       new CopyWebpackPlugin([
         { from: 'src/assets', to: 'assets' },
-        { from: 'src/meta'}
+        { from: 'src/meta'} 
       ]),
 
 
@@ -221,11 +221,13 @@ module.exports = function (options) {
       new HtmlWebpackPlugin({
         template: '!!handlebars-loader!src/index.hbs',
         title: METADATA.title,
+        filename: isProd ? 'index.html.eex' : 'index.html',
         chunksSortMode: 'dependency',
         metadata: METADATA,
+        INITIAL_STATE: JSON.stringify(INITIAL_STATE),
         inject: 'head'
       }),
-
+                            
       /*
        * Plugin: ScriptExtHtmlWebpackPlugin
        * Description: Enhances html-webpack-plugin functionality
@@ -236,7 +238,7 @@ module.exports = function (options) {
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer'
       }),
-
+      
       /*
        * Plugin: HtmlElementsPlugin
        * Description: Generate html tags based on javascript maps.

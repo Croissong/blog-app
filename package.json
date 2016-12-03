@@ -13,13 +13,13 @@
   "scripts": {
     "build:dev": "webpack --config config/webpack.dev.js --progress --profile",
     "build:docker": "npm run build:prod && docker build -t angular2-webpack-start:latest .",
-    "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail",
+    "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail && npm run move",
     "build": "npm run build:dev",
     "ci": "npm run lint && npm test && npm run e2e",
-    "clean:dist": "npm run rimraf -- dist",
+    "clean:dist": "npm run rimraf -- ../priv/static",
     "clean:install": "npm set progress=false && npm install",
     "clean:start": "npm start",
-    "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist",
+    "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage ../priv/static",
     "docker": "docker",
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
     "e2e:live": "npm run e2e -- --elementExplorer",
@@ -39,8 +39,8 @@
     "rimraf": "rimraf",
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
     "server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch --content-base src/",
-    "server:prod": "http-server dist --cors",
-    "server:prod:ci": "http-server dist -p 3000 --cors",
+    "server:prod": "http-server ../priv/static --cors",
+    "server:prod:ci": "http-server ../priv/static -p 3000 --cors",
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "start": "npm run server:dev",
@@ -58,7 +58,8 @@
     "webdriver:update": "npm run webdriver-manager update",
     "webpack-dev-server": "webpack-dev-server",
     "webpack": "webpack",
-    "images": "node scripts/images.js"
+    "images": "node scripts/images.js",
+    "move": "node scripts/move.js"
   },
   "dependencies": {
     "@angular/common": "2.2.1",
