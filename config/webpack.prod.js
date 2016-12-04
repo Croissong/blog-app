@@ -55,7 +55,7 @@ module.exports = function (env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
-      path: helpers.root('../priv/static'),
+      path: helpers.root('../priv/static/blog'),
 
       /**
        * Specifies the name of each output file on disk.

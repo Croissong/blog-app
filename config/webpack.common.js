@@ -25,8 +25,7 @@ const INITIAL_STATE = require('../src/api/state.ts');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
-  baseUrl: '/',
+  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass', 
   isDevServer: helpers.isWebpackDevServer()
 };
 
@@ -152,7 +151,7 @@ module.exports = function (options) {
       }),
       
       new AssetsPlugin({
-        path: helpers.root('../priv/static'),
+        path: helpers.root('../priv/static/blog'),
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
@@ -221,6 +220,7 @@ module.exports = function (options) {
         filename: isProd ? 'index.html.eex' : 'index.html',
         chunksSortMode: 'dependency',
         metadata: METADATA,
+        baseUrl: isProd ? /blog/ : '/',
         INITIAL_STATE: JSON.stringify(INITIAL_STATE),
         inject: 'head'
       }),
