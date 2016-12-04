@@ -19,8 +19,6 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const precss = require('precss');
-const cssnext = require('postcss-cssnext');
 const INITIAL_STATE = require('../src/api/state.ts');
 /*
  * Webpack Constants
@@ -221,6 +219,7 @@ module.exports = function (options) {
       new HtmlWebpackPlugin({
         template: '!!handlebars-loader!src/index.hbs',
         title: METADATA.title,
+        minify: isProd ? {collapseWhitespace: true} : false,
         filename: isProd ? 'index.html.eex' : 'index.html',
         chunksSortMode: 'dependency',
         metadata: METADATA,
@@ -265,19 +264,6 @@ module.exports = function (options) {
         headTags: require('./head-config.common')
       }),
 
-      /**
-       * Plugin LoaderOptionsPlugin (experimental)
-       *
-       * See: https://gist.github.com/sokra/27b24881210b56bbaff7
-       */
-      new LoaderOptionsPlugin({
-        options: {
-          postcss: [
-            precss(),
-            cssnext()
-          ]
-        }
-      }),
 
       // Fix Angular 2
       new NormalModuleReplacementPlugin(

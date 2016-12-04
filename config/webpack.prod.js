@@ -18,6 +18,9 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const precss = require('precss');
+const cssnext = require('postcss-cssnext');
 /**
  * Webpack Constants
  */
@@ -105,7 +108,7 @@ module.exports = function (env) {
        * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
        * See: https://github.com/webpack/docs/wiki/optimization#deduplication
        */
-      new DedupePlugin(), // see: https://github.com/angular/angular-cli/issues/1587
+      // new DedupePlugin(), // see: https://github.com/angular/angular-cli/issues/1587
 
       /**
        * Plugin: DefinePlugin
@@ -136,21 +139,7 @@ module.exports = function (env) {
        */
       // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
       new UglifyJsPlugin({
-        // beautify: true, //debug
-        // mangle: false, //debug
-        // dead_code: false, //debug
-        // unused: false, //debug
-        // deadCode: false, //debug
-        // compress: {
-        //   screw_ie8: true,
-        //   keep_fnames: true,
-        //   drop_debugger: false,
-        //   dead_code: false,
-        //   unused: false
-        // }, // debug
-        // comments: true, //debug
-
-
+        
         beautify: false, //prod
         output: {
           comments: false
@@ -169,8 +158,9 @@ module.exports = function (env) {
           evaluate: true,
           if_return: true,
           join_vars: true,
-          negate_iife: false // we need this for lazy v8
-        },
+          negate_iife: false, // we need this for lazy v8
+          drop_console: true
+        }
       }),
 
       /**
@@ -229,10 +219,10 @@ module.exports = function (env) {
        * See: https://github.com/webpack/compression-webpack-plugin
        */
       //  install compression-webpack-plugin
-      // new CompressionPlugin({
-      //   regExp: /\.css$|\.html$|\.js$|\.map$/,
-      //   threshold: 2 * 1024
-      // })
+      new CompressionPlugin({
+        regExp: /\.css$|\.html$|\.js$|\.map$/,
+        threshold: 2 * 1024
+      }),
 
       /**
        * Plugin LoaderOptionsPlugin (experimental)
@@ -243,7 +233,10 @@ module.exports = function (env) {
         minimize: true,
         debug: false,
         options: {
-
+          postcss: [
+            precss(),
+            cssnext()
+          ],
           /**
            * Html loader advanced options
            *
