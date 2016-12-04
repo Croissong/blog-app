@@ -54,11 +54,13 @@
   {{/unless}}
   {{/if}}
   
-  {{#if htmlWebpackPlugin.options.metadata.isDevServer}}
-  <script>window.initial_state = {{{ htmlWebpackPlugin.options.INITIAL_STATE }}}</script>
-  {{else}}
-  <script>window.initial_state = <%= {:safe, initial_state} %></script>
-  {{/if}}
+  <script>window.initial_state =
+    {{#if htmlWebpackPlugin.options.metadata.isDevServer}}
+    {{{ htmlWebpackPlugin.options.INITIAL_STATE }}}
+    {{else}}
+    <%= {:safe, initial_state} %>
+    {{/if}}
+  </script>
   
 </body>
 </html>

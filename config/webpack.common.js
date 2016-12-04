@@ -18,7 +18,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const ScriptExtHtmlWebpackPlugin = require('../scripts/scriptExtHtmlWebpackPlugin.js');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const INITIAL_STATE = require('../src/api/state.ts');
 /*
  * Webpack Constants
@@ -200,7 +200,7 @@ module.exports = function (options) {
        * See: https://www.npmjs.com/package/copy-webpack-plugin
        */
       new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' },
+        { from: 'src/assets', to: 'assets', ignore: ['img/*', 'et-book/*', 'img_optimized/*'] },
         { from: 'src/meta'} 
       ]),
 
