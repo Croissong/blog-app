@@ -12,8 +12,7 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const precss = require('precss');
-const cssnext = require('postcss-cssnext');
+
 
 /**
  * Webpack Constants
@@ -114,22 +113,7 @@ module.exports = function (options) {
        *
        * See: https://github.com/webpack/webpack/commit/a04ffb928365b19feb75087c63f13cadfc08e1eb
        */
-      // new NamedModulesPlugin(),
-
-      /**
-       * Plugin LoaderOptionsPlugin (experimental)
-       *
-       * See: https://gist.github.com/sokra/27b24881210b56bbaff7
-       */
-      new LoaderOptionsPlugin({
-        debug: true,
-        options: {
-          postcss: [
-            precss(),
-            cssnext()
-          ]
-        }
-      }),
+      // new NamedModulesPlugin(), 
 
     ],
 

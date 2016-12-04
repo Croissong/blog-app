@@ -38,7 +38,6 @@ const METADATA = {
 module.exports = function (options) {
   var isProd = options.env === 'production';
   return {
-
     /*
      * Cache generated modules and chunks to improve performance for multiple incremental builds.
      * This is enabled by default in watch mode.
@@ -47,7 +46,7 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#cache
      */
     //cache: false,
-
+    
     /*
      * The entry point for the bundle
      * Our Angular.js app
@@ -123,7 +122,7 @@ module.exports = function (options) {
          */
         {
           test: /\.css$/,
-          use: ['to-string-loader', 'css-loader', 'postcss-loader']
+          use: ['to-string-loader', 'css-loader?importLoaders=1', 'postcss-loader']
         },
 
         /* Raw loader support for *.html
@@ -134,25 +133,24 @@ module.exports = function (options) {
         {
           test: /\.html$/,
           use: 'raw-loader' 
-        },
-
-        /* File loader for supporting images, for example, in CSS files.
-         */
-        {
-          test: /\.(jpg|png|gif)$/,
-          use: 'file-loader'
-        },
-
+        }
       ],
 
     },
 
+    
     /*
      * Add additional plugins to the compiler.
      *
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+
+      new LoaderOptionsPlugin({
+        debug: isProd ? false : true,
+        minimize: isProd ? true : false 
+      }),
+      
       new AssetsPlugin({
         path: helpers.root('../priv/static'),
         filename: 'webpack-assets.json',
@@ -226,7 +224,7 @@ module.exports = function (options) {
         INITIAL_STATE: JSON.stringify(INITIAL_STATE),
         inject: 'head'
       }),
-                            
+      
       /*
        * Plugin: ScriptExtHtmlWebpackPlugin
        * Description: Enhances html-webpack-plugin functionality

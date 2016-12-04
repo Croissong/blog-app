@@ -19,8 +19,6 @@ const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const precss = require('precss');
-const cssnext = require('postcss-cssnext');
 /**
  * Webpack Constants
  */
@@ -222,44 +220,9 @@ module.exports = function (env) {
       new CompressionPlugin({
         regExp: /\.css$|\.html$|\.js$|\.map$/,
         threshold: 2 * 1024
-      }),
-
-      /**
-       * Plugin LoaderOptionsPlugin (experimental)
-       *
-       * See: https://gist.github.com/sokra/27b24881210b56bbaff7
-       */
-      new LoaderOptionsPlugin({
-        minimize: true,
-        debug: false,
-        options: {
-          postcss: [
-            precss(),
-            cssnext()
-          ],
-          /**
-           * Html loader advanced options
-           *
-           * See: https://github.com/webpack/html-loader#advanced-options
-           */
-          // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
-          htmlLoader: {
-            minimize: true,
-            removeAttributeQuotes: false,
-            caseSensitive: true,
-            customAttrSurround: [
-              [/#/, /(?:)/],
-              [/\*/, /(?:)/],
-              [/\[?\(?/, /(?:)/]
-            ],
-            customAttrAssign: [/\)?\]?=/]
-          },
-
-        }
-      }),
-
+      })
     ],
-
+    
     /*
      * Include polyfills or mocks for various node stuff
      * Description: Node configuration
