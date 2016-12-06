@@ -21,6 +21,8 @@ import '@angularclass/hmr';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+import 'prismjs';
+
 if ('production' === ENV) {
   // Production
 

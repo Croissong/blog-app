@@ -1,4 +1,5 @@
 @import 'tufte.css';
+@import 'prismjs/themes/prism-okaidia.css';
 
 body {
   overflow-y: scroll
