@@ -121,7 +121,10 @@ module.exports = function (options) {
          */
         {
           test: /\.css$/,
-          use: ['to-string-loader', 'css-loader?importLoaders=1', 'postcss-loader']
+          use: ['to-string-loader',
+                {loader: 'css-loader', query: { importLoaders: 1 }},
+                'resolve-url-loader',
+                'postcss-loader']
         },
 
         /* Raw loader support for *.html
@@ -129,6 +132,15 @@ module.exports = function (options) {
          *
          * See: https://github.com/webpack/raw-loader
          */
+
+        {
+          test: /\.woff$/,
+          loader: 'url-loader' 
+        },
+        {
+          test: /\.(woff2|eot|ttf|svg|png|jpe?g|gif)$/,
+          loader: 'file-loader' 
+        }, 
         {
           test: /\.html$/,
           use: 'raw-loader' 
@@ -147,7 +159,11 @@ module.exports = function (options) {
 
       new LoaderOptionsPlugin({
         debug: isProd ? false : true,
-        minimize: isProd ? true : false 
+        minimize: isProd ? true : false,
+        options: {
+          context: helpers.root(),
+          output: {path: helpers.root()} 
+        }
       }),
       
       new AssetsPlugin({

@@ -12,7 +12,7 @@ var excludeDirFilter = through2.obj(function (item, enc, next) {
   next()
 })
 
-klaw('src/public/img')
+klaw('src/assets/img')
   .pipe(excludeDirFilter)
   .on('data', function (file) {
     Jimp.read(file.path).then(function (image) {

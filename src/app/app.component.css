@@ -1,4 +1,9 @@
 @import 'tufte.css';
+
+body {
+  overflow-y: scroll
+}
+
 footer {
   & span {
     background-color: green;
