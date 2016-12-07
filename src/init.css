@@ -4,22 +4,18 @@ svg {
   margin: auto;
 }
 
-.rect {
-  fill: none;
-  stroke-width: 8px;
-  stroke: black;
-  stroke-dasharray: 40;
-  stroke-dashoffset: 50%;
-  
-  animation: movedash 0.7s forwards 0s infinite;
-}
-
-@keyframes movedash {
-  to {
-    stroke-dashoffset: 250%;
-  }
-}
-
 body {
   background-color: #fffff8;
+  overflow-y: scroll;
+}
+
+.loader, app {
+  & > * {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-out;
+  }
+  &.inactive > * {
+    opacity: 0; 
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 
 import { AppState } from './app.service';
 import '../init.css';
@@ -11,13 +11,22 @@ import '../init.css';
   ],
   templateUrl: './app.component.html'
 })
-export class AppComponent {
-  constructor(
-    public appState: AppState) {
+export class AppComponent extends AfterViewInit {
+  element: HTMLElement;
+  
+  constructor(public appState: AppState, element: ElementRef) {
+    super();
+    this.element = element.nativeElement;
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     console.log('Initial App State', this.appState.state);
+    setTimeout(() => this.activate());
+  }
+
+  activate() {
+    this.element.classList.remove('inactive');
+    this.element.previousElementSibling.classList.add('inactive'); 
   }
 
 }

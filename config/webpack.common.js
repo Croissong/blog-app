@@ -1,14 +1,5 @@
-/**
- * @author: @AngularClass
- */
-
 const webpack = require('webpack');
 const helpers = require('./helpers');
-
-/*
- * Webpack Plugins
- */
-// problem with copy-webpack-plugin
 const AssetsPlugin = require('assets-webpack-plugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
@@ -22,9 +13,8 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const INITIAL_STATE = require('../src/api/state.ts');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
-/*
- * Webpack Constants
- */
+
+
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
   title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass', 
@@ -116,11 +106,6 @@ module.exports = function (options) {
           use: 'json-loader'
         },
 
-        /*
-         * to string and css loader support for *.css files
-         * Returns file content as string
-         *
-         */
         {
           test: /^(?=.*\.css)(?!.*?init\.css).*/, 
           use: ['to-string-loader',
@@ -132,24 +117,20 @@ module.exports = function (options) {
         {
           test: /init\.css$/, 
           loader: ExtractTextWebpackPlugin.extract({
-            loader: ['css-loader']
+            loader: ['css-loader', 'postcss-loader']
           })
         },
-
-        /* Raw loader support for *.html
-         * Returns file content as string
-         *
-         * See: https://github.com/webpack/raw-loader
-         */
-
+        
         {
           test: /\.woff$/,
           loader: 'url-loader' 
         },
+        
         {
           test: /\.(woff2|eot|ttf|svg|png|jpe?g|gif)$/,
           loader: 'file-loader' 
-        }, 
+        },
+        
         {
           test: /\.html$/,
           use: 'raw-loader' 
@@ -158,12 +139,6 @@ module.exports = function (options) {
 
     },
 
-    
-    /*
-     * Add additional plugins to the compiler.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#plugins
-     */
     plugins: [
 
       new LoaderOptionsPlugin({
