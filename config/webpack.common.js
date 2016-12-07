@@ -20,6 +20,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const INITIAL_STATE = require('../src/api/state.ts');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 /*
  * Webpack Constants
  */
@@ -120,11 +122,18 @@ module.exports = function (options) {
          *
          */
         {
-          test: /\.css$/,
+          test: /^(?=.*\.css)(?!.*?init\.css).*/, 
           use: ['to-string-loader',
                 {loader: 'css-loader', query: { importLoaders: 1 }},
                 'resolve-url-loader',
                 'postcss-loader']
+        },
+
+        {
+          test: /init\.css$/, 
+          loader: ExtractTextWebpackPlugin.extract({
+            loader: ['css-loader']
+          })
         },
 
         /* Raw loader support for *.html
@@ -158,8 +167,8 @@ module.exports = function (options) {
     plugins: [
 
       new LoaderOptionsPlugin({
-        debug: isProd ? false : true,
-        minimize: isProd ? true : false,
+        debug: !isProd,
+        minimize: isProd,
         options: {
           context: helpers.root(),
           output: {path: helpers.root()} 
@@ -241,16 +250,13 @@ module.exports = function (options) {
         inject: 'head'
       }),
       
-      /*
-       * Plugin: ScriptExtHtmlWebpackPlugin
-       * Description: Enhances html-webpack-plugin functionality
-       * with different deployment options for your scripts including:
-       *
-       * See: https://github.com/numical/script-ext-html-webpack-plugin
-       */
+      
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer'
       }),
+
+      new ExtractTextWebpackPlugin('init.css'),
+      new StyleExtHtmlWebpackPlugin(),
       
       /*
        * Plugin: HtmlElementsPlugin
