@@ -1,5 +1,6 @@
 @import 'tufte.css';
 @import 'prismjs/themes/prism-okaidia.css';
+@import 'baguetteBox.js/dist/baguetteBox.css';
 
 body {
   overflow-y: scroll
@@ -9,4 +10,12 @@ footer {
   & span {
     background-color: green;
   }
+}
+
+.full-image figcaption {
+  max-width: 100%;
+}
+
+.baguette a {
+  background: none;
 }
