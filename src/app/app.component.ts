@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 
+import { ROUTES } from './app.routes';
+
 import { AppState } from './app.service';
 import '../init.css';
 
@@ -13,6 +15,7 @@ import '../init.css';
 })
 export class AppComponent extends AfterViewInit {
   element: HTMLElement;
+  routes = ROUTES;
   
   constructor(public appState: AppState, element: ElementRef) {
     super();

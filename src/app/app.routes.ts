@@ -7,11 +7,11 @@ import { DataResolver } from './app.resolver';
 
 
 export const ROUTES: Routes = [
-  { path: '',      component: HomeComponent },
-  { path: 'about', component: AboutComponent },
+  { data: {name: 'Index'}, path: '',      component: HomeComponent },
+  { data: {name: 'About'}, path: 'about', component: AboutComponent },
   {
-    path: 'detail', loadChildren: () => System.import('./+detail')
-      .then((comp: any) => comp.default),
-  },
-  { path: '**',    component: NoContentComponent },
+    data: {name: 'Detail'}, path: 'detail',
+    loadChildren: () => System.import('./+detail')
+                              .then((comp: any) => comp.default),
+  } 
 ];

@@ -19,3 +19,7 @@ footer {
 .baguette a {
   background: none;
 }
+
+nav a:not(.active) {
+  background: none;
+}

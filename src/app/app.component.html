@@ -1,29 +1,13 @@
 <nav>
-  <span>
-    <a [routerLink]=" ['./'] ">
-      Index
+  <span *ngFor="let route of routes; let last = last">
+    <a [routerLink]=" [route.path] " [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }">
+      {{route.data.name}}
     </a>
+    <span *ngIf="!last">|</span>
   </span> 
-  |
-  <span>
-    <a [routerLink]=" ['./detail'] ">
-      Detail
-    </a>
-  </span>
-  |
-  <span>
-    <a [routerLink]=" ['./about'] ">
-      About
-    </a>
-  </span>
 </nav>
 
 <main>
   <router-outlet></router-outlet>
 </main>
-
-<pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
-<footer>
-  <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span> 
-</footer>
