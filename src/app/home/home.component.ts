@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import  * as baguetteBox from 'baguettebox.js';
+import * as Prism from 'prismjs';
 import { AppState } from '../app.service';
 import { Title } from './title';
 import { XLarge } from './x-large';
@@ -18,6 +19,7 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-    baguetteBox.run('.baguette');
+    Prism.highlightAll();
+    baguetteBox.run('.baguette'); 
   }
 }
