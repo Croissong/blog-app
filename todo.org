@@ -1,3 +1,8 @@
 * image optimization
 - responsive srcset
 - optimize
+* add toc
+https://github.com/tscanlin/tocbot/
+** add anchor links
+https://github.com/bryanbraun/anchorjs
+* ngrx + immutablejs
