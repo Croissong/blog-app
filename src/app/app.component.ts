@@ -1,8 +1,6 @@
 import { Component, ElementRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 
 import { ROUTES } from './app.routes';
-
-import { AppState } from './app.service';
 import '../init.css';
 
 @Component({
@@ -17,13 +15,12 @@ export class AppComponent extends AfterViewInit {
   element: HTMLElement;
   routes = ROUTES;
   
-  constructor(public appState: AppState, element: ElementRef) {
+  constructor(element: ElementRef) {
     super();
     this.element = element.nativeElement;
   }
 
   ngAfterViewInit() {
-    console.log('Initial App State', this.appState.state);
     setTimeout(() => this.activate());
   }
 
