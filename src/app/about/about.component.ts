@@ -11,7 +11,7 @@ export class AboutComponent {
   counter: Observable<number>;
   
   constructor(private store: Store<AppState>) {
-    this.counter = store.select(s => s.counter);
+    this.counter = store.select(s => s.counter.get('1'));
   }
 
   increment(){

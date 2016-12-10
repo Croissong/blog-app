@@ -1,13 +1,19 @@
 import { ActionReducer, Action, combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
+import { fromJS, Map } from 'immutable';
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const RESET = 'RESET';
 export const SET_ROOT_STATE = 'SET_ROOT_STATE';
 
+
+export const initial_state: AppState = Object.entries((<any>window).initial_state)
+  .reduce((state: AppState, [key, val]) => ({...state, [key]: fromJS(val)}),
+          (<AppState>{}));
+
 export interface AppState {
-  counter: number;
+  counter: Map<string, any>;
 }
 
 // Generate a reducer to set the root state in dev mode for HMR
@@ -19,16 +25,16 @@ const stateSetter: ActionReducer<any> = (reducer: ActionReducer<any>) =>
     return reducer(state, action);
   };
 
-const counter: ActionReducer<number> = (state: number = 0, action: Action) => {
+const counter: ActionReducer<Map<string, any>> = (state: Map<string, any>, action: Action) => {
   switch (action.type) {
   case INCREMENT:
-    return state + 1;
+    return state.update('1', v => v + 1);
 
   case DECREMENT:
-    return state - 1;
+    return state.update('1', v => v - 1);
 
   case RESET:
-    return 0;
+    return state.update('1', v => 0);
 
   default:
     return state;

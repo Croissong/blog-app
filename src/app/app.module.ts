@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { rootReducer, AppState, SET_ROOT_STATE } from './reducers';
+import { rootReducer, AppState, SET_ROOT_STATE, initial_state } from './reducers';
 import 'rxjs/add/operator/take';
 
 /*
@@ -19,8 +19,6 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
-
-import { initial_state } from 'api/initial_state';
 
 // Application wide providers
 const APP_PROVIDERS = [
