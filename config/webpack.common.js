@@ -107,7 +107,7 @@ module.exports = function (options) {
         },
 
         {
-          test: /^(?=.*\.css)(?!.*?init\.css).*/, 
+          test: /^(?=.*\.css)(?!.*?index\.css).*/, 
           use: ['to-string-loader',
                 {loader: 'css-loader', query: { importLoaders: 1 }},
                 'resolve-url-loader',
@@ -115,7 +115,7 @@ module.exports = function (options) {
         },
 
         {
-          test: /init\.css$/, 
+          test: /index\.css$/, 
           loader: ExtractTextWebpackPlugin.extract({
             loader: ['css-loader', 'postcss-loader']
           })
@@ -230,7 +230,7 @@ module.exports = function (options) {
         defaultAttribute: 'defer'
       }),
 
-      new ExtractTextWebpackPlugin('init.css'),
+      new ExtractTextWebpackPlugin('index.css'),
       new StyleExtHtmlWebpackPlugin(),
       
       /*
