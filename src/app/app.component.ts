@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { ROUTES } from './app.routes';
-import '../init.css';
+import 'init.css';
 
 @Component({
   selector: 'app',
