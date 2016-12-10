@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { StoreModule, Store } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, AppState } from './reducers';
 import 'rxjs/add/operator/take';
 
@@ -39,7 +40,8 @@ const APP_PROVIDERS = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {}),
-    StoreModule.provideStore(reducers)
+    StoreModule.provideStore(reducers),
+    StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
