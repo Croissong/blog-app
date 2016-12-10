@@ -1,11 +1,25 @@
-import { ActionReducer, Action } from '@ngrx/store';
-import { combineReducers } from '@ngrx/store';
+import { ActionReducer, Action, combineReducers } from '@ngrx/store';
+import { compose } from '@ngrx/core/compose';
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const RESET = 'RESET';
+export const SET_ROOT_STATE = 'SET_ROOT_STATE';
 
-export const counterReducer: ActionReducer<number> = (state: number = 0, action: Action) => {
+export interface AppState {
+  counter: number;
+}
+
+// Generate a reducer to set the root state in dev mode for HMR
+const stateSetter: ActionReducer<any> = (reducer: ActionReducer<any>) =>
+  (state, action) => {
+    if (action.type === SET_ROOT_STATE) {
+      return action.payload;
+    }
+    return reducer(state, action);
+  };
+
+const counter: ActionReducer<number> = (state: number = 0, action: Action) => {
   switch (action.type) {
   case INCREMENT:
     return state + 1;
@@ -21,10 +35,12 @@ export const counterReducer: ActionReducer<number> = (state: number = 0, action:
   }
 }
 
-export interface AppState {
-  counter: number;
-}
+const reducers = {
+  counter
+};
 
-export const reducers = combineReducers({
-  counter: counterReducer
-});
+const developmentReducer = compose(stateSetter, combineReducers)(reducers);
+const productionReducer = compose(combineReducers)(reducers);
+
+export const rootReducer = (state: any, action: any) => 
+  ENV !== 'development' ? productionReducer(state, action) : developmentReducer(state, action);
