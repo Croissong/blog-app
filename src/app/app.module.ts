@@ -20,6 +20,8 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 
+import { initial_state } from 'api/initial_state';
+
 // Application wide providers
 const APP_PROVIDERS = [
     ...APP_RESOLVER_PROVIDERS
@@ -40,7 +42,7 @@ const APP_PROVIDERS = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {}),
-    StoreModule.provideStore(reducers),
+    StoreModule.provideStore(rootReducer, initial_state),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
