@@ -6,7 +6,7 @@ import 'index.css';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './app.component.css' 
+    './app.component.css'
   ],
   templateUrl: './app.component.html'
 })
@@ -18,7 +18,7 @@ export class AppComponent extends AfterViewInit {
     super();
     this.element = element.nativeElement;
   }
-
+  
   ngAfterViewInit() {
     setTimeout(() => this.activate());
   }
