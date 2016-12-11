@@ -1,4 +1,4 @@
 * Blog
-[[https://travis-ci.org/Croissong/blog-app.svg]]
+[[https://travis-ci.org/Croissong/blog-app][https://travis-ci.org/Croissong/blog-app.svg]]
 [[https://david-dm.org/croissong/blog-app][https://david-dm.org/croissong/blog-app.svg]]
 [[https://david-dm.org/croissong/blog-app#info%3DdevDependencies][https://david-dm.org/croissong/blog-app/dev-status.svg]]

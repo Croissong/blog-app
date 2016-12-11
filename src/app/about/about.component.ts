@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { INCREMENT, DECREMENT, RESET, AppState } from 'app/reducers';
+import { actions, AppState } from 'app/reducers';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -15,14 +15,14 @@ export class AboutComponent {
   }
 
   increment(){
-    this.store.dispatch({ type: INCREMENT });
+    this.store.dispatch(actions.increment(1));
   }
 
   decrement(){
-    this.store.dispatch({ type: DECREMENT });
+    this.store.dispatch(actions.decrement(1));
   }
 
   reset(){
-    this.store.dispatch({ type: RESET });
+    this.store.dispatch(actions.reset());
   }
 }

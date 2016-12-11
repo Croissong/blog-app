@@ -1,1 +1,1 @@
-module.exports = {counter: {1: 0, 2: 0}};
+module.exports = {counter: {1: 1, 2: 2}};

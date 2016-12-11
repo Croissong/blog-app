@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { rootReducer, AppState, SET_ROOT_STATE, initial_state } from './reducers';
+import { rootReducer, AppState, actions, initial_state } from './reducers';
 import 'rxjs/add/operator/take';
 
 /*
@@ -56,10 +56,7 @@ export class AppModule {
 
     // restore state by dispatch a SET_ROOT_STATE action
     if (store.rootState) {
-      this._store.dispatch({
-        type: SET_ROOT_STATE,
-        payload: store.rootState
-      });
+      this._store.dispatch(actions.setRootState(store.rootState));
     }
 
     if ('restoreInputValues' in store) { store.restoreInputValues(); }
