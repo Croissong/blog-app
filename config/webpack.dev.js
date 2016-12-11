@@ -134,6 +134,12 @@ module.exports = function (options) {
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
+      },
+      proxy: {
+        '/socket/*': {
+          target: 'http://localhost:4000',
+          ws: true
+        }
       }
     },
 

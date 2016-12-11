@@ -8,6 +8,7 @@ import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { rootReducer, AppState, actions, initial_state } from './reducers';
 import 'rxjs/add/operator/take';
+import { connect } from 'api/websocket';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -49,7 +50,9 @@ const APP_PROVIDERS = [
   ]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef, private _store: Store<AppState>) { }
+  constructor(public appRef: ApplicationRef, private _store: Store<AppState>) {
+    connect();
+  }
 
   hmrOnInit(store) {
     if (!store || !store.rootState) return;
