@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { actions, AppState } from 'app/reducers';
+import { actions, AppState } from 'reducers';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

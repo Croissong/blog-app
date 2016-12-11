@@ -6,22 +6,19 @@ import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { rootReducer, AppState, actions, initial_state } from './reducers';
+import { rootReducer, AppState, actions, initial_state } from 'reducers';
 import 'rxjs/add/operator/take';
 import { connect } from 'api/websocket';
 
-/*
- * Platform and Environment providers/directives/pipes
- */
+
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
-// App is our top level component
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { HomeComponent } from './home';
-import { AboutComponent } from './about';
+import { HomeComponent, AboutComponent } from 'components';
 
-// Application wide providers
+
+
 const APP_PROVIDERS = [
     ...APP_RESOLVER_PROVIDERS
 ];
