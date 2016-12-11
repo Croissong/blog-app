@@ -1,8 +1,16 @@
-* image optimization
-- responsive srcset
-- optimize
+* TODO image optimization [0/2]
+- [ ] responsive srcset
+- [ ] optimize
 * add toc
 https://github.com/tscanlin/tocbot/
 ** add anchor links
 https://github.com/bryanbraun/anchorjs
-* ngrx + immutablejs
+* reselect
+https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts
+* tests
+- app component loader
+* async posts
+- http://blog.thoughtram.io/angular/2016/10/10/resolving-route-data-in-angular-2.html
+* TODO websocket [1/1]
+- [X] establish connection
+* TODO authentication
