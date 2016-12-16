@@ -53,15 +53,15 @@
     "move": "node scripts/move.js"
   },
   "dependencies": {
-    "@angular/common": "2.3.0",
-    "@angular/compiler": "2.3.0",
-    "@angular/core": "2.3.0",
-    "@angular/forms": "2.3.0",
-    "@angular/http": "2.3.0",
-    "@angular/platform-browser": "2.3.0",
-    "@angular/platform-browser-dynamic": "2.3.0",
-    "@angular/platform-server": "2.3.0",
-    "@angular/router": "3.3.0",
+    "@angular/common": "2.3.1",
+    "@angular/compiler": "2.3.1",
+    "@angular/core": "2.3.1",
+    "@angular/forms": "2.3.1",
+    "@angular/http": "2.3.1",
+    "@angular/platform-browser": "2.3.1",
+    "@angular/platform-browser-dynamic": "2.3.1",
+    "@angular/platform-server": "2.3.1",
+    "@angular/router": "3.3.1",
     "@angularclass/conventions-loader": "^1.0.2",
     "@angularclass/hmr": "~1.2.2",
     "@angularclass/hmr-loader": "~3.0.2",
@@ -74,8 +74,8 @@
     "ie-shim": "^0.1.0",
     "immutable": "^3.8.1",
     "prismjs": "^1.6.0",
-    "rxjs": "5.0.0-beta.12",
-    "zone.js": "~0.6.26"
+    "rxjs": "5.0.0-rc.4",
+    "zone.js": "^0.7.2"
   },
   "devDependencies": {
     "@ngrx/store-devtools": "^3.2.2",
@@ -111,7 +111,8 @@
     "karma-remap-coverage": "^0.1.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "1.8.0",
-    "parse5": "3.0.0",
+    "lost": "^7.1.1",
+    "parse5": "3.0.1",
     "postcss": "^5.2.6",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.0.0",
@@ -130,7 +131,7 @@
     "to-string-loader": "^1.1.4",
     "ts-helpers": "1.1.2",
     "ts-node": "^1.7.0",
-    "tslint": "4.0.2",
+    "tslint": "4.1.0",
     "tslint-loader": "3.3.0",
     "typedoc": "^0.5.0",
     "typescript": "^2.1.4",
@@ -140,7 +141,7 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "2.1.0-beta.11",
     "webpack-md5-hash": "^0.0.5",
-    "webpack-merge": "1.1.0"
+    "webpack-merge": "1.1.1"
   },
   "repository": {
     "type": "git",
