@@ -6,6 +6,7 @@ module.exports = function (ctx) {
       'postcss-import': {
         path: [helpers.root('src/assets/css')]
       },
+      'lost',
       'precss': {},
       'postcss-cssnext': {}
     }
