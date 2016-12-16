@@ -15,7 +15,8 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { HomeComponent, AboutComponent } from 'components';
+import { AboutComponent } from 'components';
+import { HomeModule } from 'modules';
 
 
 
@@ -30,16 +31,16 @@ const APP_PROVIDERS = [
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    AboutComponent,
-    HomeComponent
+    AboutComponent 
   ],
-  imports: [ // import Angular's modules
+  imports: [ 
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {}),
     StoreModule.provideStore(rootReducer, initial_state),
-    StoreDevtoolsModule.instrumentOnlyWithExtension()
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    HomeModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

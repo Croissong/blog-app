@@ -1,9 +1,10 @@
 * TODO image optimization [0/2]
 - [ ] responsive srcset
 - [ ] optimize
-* add toc
+* add toc [/]
 https://github.com/tscanlin/tocbot/
-** add anchor links
+- [ ]
+- add anchor links
 https://github.com/bryanbraun/anchorjs
 * reselect
 https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts
@@ -14,7 +15,8 @@ https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts
 * TODO websocket [1/1]
 - [X] establish connection
 * TODO authentication
-* TODO remove config at root
+* TODO remove webpack config at root [unclear]
+- does it still work without
 * DONE
 ** Restructure app / components / reducers at src level
 - weback resolution
