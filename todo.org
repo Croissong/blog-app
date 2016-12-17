@@ -1,11 +1,15 @@
 * TODO image optimization [0/2]
 - [ ] responsive srcset
 - [ ] optimize
-* add toc [/]
+* add toc [2/4]
 https://github.com/tscanlin/tocbot/
-- [ ]
-- add anchor links
-https://github.com/bryanbraun/anchorjs
+- [X] add tocbot
+- [X] add anchor links
+  https://github.com/bryanbraun/anchorjs
+- [ ] fix scroll lag (demo works better is better)
+  - seperate header from article, toc and article same top position
+- [ ] fix missing left border (see demo)
+  - ::before not showing
 * reselect
 https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts
 * tests

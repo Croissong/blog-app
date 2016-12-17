@@ -3,7 +3,10 @@
 @import 'baguetteBox.js/dist/baguetteBox.css';
 
 body {
-  overflow-y: scroll
+  overflow-y: scroll;
+  width: 90.5%; 
+  padding-left: 9.5%; 
+  max-width: 1720px; 
 }
 
 footer {
@@ -22,4 +25,8 @@ footer {
 
 nav a:not(.active) {
   background: none;
+}
+
+nav {
+  padding-left: 320px;
 }
