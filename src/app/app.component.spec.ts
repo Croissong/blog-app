@@ -10,7 +10,7 @@ describe('App', () => {
     TestBed.configureTestingModule({
       providers: [ AppComponent ]
     });
-  
+
     /* it('app should replace loader', inject(
      *   [ AppComponent ], (app: AppComponent) => {
      *     app.activate();

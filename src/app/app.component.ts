@@ -13,19 +13,19 @@ import 'index.css';
 export class AppComponent extends AfterViewInit {
   element: HTMLElement;
   routes = ROUTES;
-  
+
   constructor(element: ElementRef) {
     super();
     this.element = element.nativeElement;
   }
-  
+
   ngAfterViewInit() {
     setTimeout(() => this.activate());
   }
 
   activate() {
     this.element.classList.remove('inactive');
-    this.element.previousElementSibling.classList.add('inactive'); 
+    this.element.previousElementSibling.classList.add('inactive');
   }
 
 }

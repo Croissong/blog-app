@@ -7,6 +7,6 @@ import * as PostComponents from 'components/post';
   declarations: [
     HomeComponent,
       ...Object.values(PostComponents)
-  ] 
+  ]
 })
 export class HomeModule {}

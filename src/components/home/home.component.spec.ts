@@ -24,13 +24,13 @@ describe('Home', () => {
           return new Http(backend, defaultOptions);
         },
         deps: [MockBackend, BaseRequestOptions]
-      }, 
+      },
       HomeComponent
     ]
   }));
-  
+
   /* it('', inject([ HomeComponent ], (home: HomeComponent) => {
-   *   
+   *
    * }));*/
 
 });
