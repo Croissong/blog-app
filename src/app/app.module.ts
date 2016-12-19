@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { rootReducer, AppState, actions, initial_state } from 'reducers';
+import { rootReducer, AppState, actions, initialState } from 'reducers';
 import 'rxjs/add/operator/take';
 import { connect } from 'api/websocket';
 
@@ -31,14 +31,14 @@ const APP_PROVIDERS = [
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    AboutComponent 
+    AboutComponent
   ],
-  imports: [ 
+  imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {}),
-    StoreModule.provideStore(rootReducer, initial_state),
+    StoreModule.provideStore(rootReducer, initialState),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     HomeModule
   ],
@@ -79,4 +79,3 @@ export class AppModule {
   }
 
 }
-

@@ -4,12 +4,12 @@ import { actions, AppState } from 'reducers';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'about', 
+  selector: 'about',
   templateUrl: './about.component.html'
 })
 export class AboutComponent {
   counter: Observable<number>;
-  
+
   constructor(private store: Store<AppState>) {
     this.counter = store.select(s => s.counter.get('1'));
   }
