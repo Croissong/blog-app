@@ -34,23 +34,9 @@ module.exports = function (options) {
       extensions: ['.ts', '.js', '.json'], 
       modules: ['src', 'node_modules']
     },
-
-    /*
-     * Options affecting the normal modules.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#module
-     */
+    
     module: {
-
       rules: [
-
-        /*
-         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
-         * Replace templateUrl and stylesUrl with require()
-         *
-         * See: https://github.com/s-panferov/awesome-typescript-loader
-         * See: https://github.com/TheLarkInn/angular2-template-loader
-         */
         {
           test: /\.ts$/,
           use: [
@@ -61,17 +47,12 @@ module.exports = function (options) {
           ],
           exclude: [/\.(spec|e2e)\.ts$/]
         },
-
-        /*
-         * Json loader support for *.json files.
-         *
-         * See: https://github.com/webpack/json-loader
-         */
+        
         {
           test: /\.json$/,
           use: 'json-loader'
         },
-
+        
         {
           test: /^(?=.*\.css)(?!.*?index\.css).*/, 
           use: ['to-string-loader',
@@ -93,16 +74,22 @@ module.exports = function (options) {
         },
         
         {
-          test: /\.(woff2|eot|ttf|svg|png|jpe?g|gif)$/,
-          loader: 'file-loader' 
+          test: /\.(woff2|eot|ttf)$/,
+          loader: 'file-loader',
+          query: {name: 'fonts/[name].[ext]'}
+        },
+
+        {
+          test: /\.(svg|png|jpe?g|gif)$/,
+          loader: 'file-loader',
+          query: {name: 'img/[name].[ext]'}
         },
         
         {
           test: /\.html$/,
           use: 'raw-loader' 
         }
-      ],
-
+      ]
     },
 
     plugins: [
@@ -117,7 +104,7 @@ module.exports = function (options) {
       }),
       
       new AssetsPlugin({
-        path: helpers.root('../priv/static/blog'),
+        path: helpers.root('../mnt-koa/dist/blog'),
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
@@ -151,33 +138,17 @@ module.exports = function (options) {
         }
       ),
 
-      /*
-       * Plugin: CopyWebpackPlugin
-       * Description: Copy files and directories in webpack.
-       *
-       * Copies project static assets.
-       *
-       * See: https://www.npmjs.com/package/copy-webpack-plugin
-       */
       new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets', ignore: ['img/*', 'et-book/*', 'img_optimized/*'] },
+        { from: 'src/assets/img', to: 'img' },
+        { from: 'src/assets/icon', to: 'icon' },
         { from: 'src/meta'} 
       ]),
 
-
-      /*
-       * Plugin: HtmlWebpackPlugin
-       * Description: Simplifies creation of HTML files to serve your webpack bundles.
-       * This is especially useful for webpack bundles that include a hash in the filename
-       * which changes every compilation.
-       *
-       * See: https://github.com/ampedandwired/html-webpack-plugin
-       */
       new HtmlWebpackPlugin({
         template: '!!handlebars-loader!src/index.hbs',
         title: METADATA.title,
         minify: isProd ? {collapseWhitespace: true} : false,
-        filename: isProd ? 'index.html.eex' : 'index.html',
+        filename: 'index.html',
         chunksSortMode: 'dependency',
         metadata: METADATA,
         baseUrl: isProd ? /blog/ : '/',
@@ -243,12 +214,6 @@ module.exports = function (options) {
       ),
     ],
 
-    /*
-     * Include polyfills or mocks for various node stuff
-     * Description: Node configuration
-     *
-     * See: https://webpack.github.io/docs/configuration.html#node
-     */
     node: {
       global: true,
       crypto: 'empty',
@@ -259,4 +224,4 @@ module.exports = function (options) {
     }
 
   };
-}
+};

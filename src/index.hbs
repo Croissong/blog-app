@@ -28,7 +28,7 @@
     {{#if htmlWebpackPlugin.options.metadata.isDevServer}}
     {{{ htmlWebpackPlugin.options.INITIAL_STATE }}}
     {{else}}
-    <%= {:safe, initial_state} %>
+    ${data.initial_state}
     {{/if}}
   </script>
   
