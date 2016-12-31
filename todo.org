@@ -16,11 +16,15 @@ https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts
 - app component loader
 * async posts
 - http://blog.thoughtram.io/angular/2016/10/10/resolving-route-data-in-angular-2.html
-* TODO websocket [1/1]
-- [X] establish connection
+* Fix tests [1/1]
+- [X] fix lint errors
+- [ ] fix weird undefined import bug in test env
 * TODO authentication
 * TODO remove webpack config at root [unclear]
 - does it still work without
 * DONE
 ** Restructure app / components / reducers at src level
 - weback resolution
+
+** websocket [1/1]
+ - [X] establish connection
