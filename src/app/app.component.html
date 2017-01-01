@@ -1,6 +1,6 @@
 <nav>
   <span *ngFor="let route of routes; let last = last">
-    <a [routerLink]=" [route.path] " [routerLinkActive]="['active']"
+    <a *ngIf="route.data?.name" [routerLink]=" [route.path] " [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{ exact: true }">
       {{route.data.name}}
     </a>

@@ -10,5 +10,6 @@ export const ROUTES: Routes = [
     data: {name: 'Detail'}, path: 'detail',
     loadChildren: () => System.import('components/+detail')
       .then((comp: any) => comp.default),
-  }
+  },
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
