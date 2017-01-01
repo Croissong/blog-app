@@ -32,7 +32,7 @@ module.exports = function (options) {
 
     output: {
 
-      path: helpers.root('../mnt-koa/dist/blog'),
+      path: helpers.root('../dist/blog'),
       filename: 'js/[name].bundle.js', 
       sourceMapFilename: 'js/[name].map', 
       chunkFilename: 'js/[id].chunk.js',

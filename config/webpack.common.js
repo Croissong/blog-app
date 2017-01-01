@@ -104,7 +104,7 @@ module.exports = function (options) {
       }),
       
       new AssetsPlugin({
-        path: helpers.root('../mnt-koa/dist/blog'),
+        path: helpers.root('../dist/blog'),
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),

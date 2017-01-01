@@ -50,7 +50,7 @@ module.exports = function (env) {
      */
     output: {
       
-      path: helpers.root('../mnt-koa/dist/blog'),
+      path: helpers.root('../dist/blog'),
       filename: 'js/[name].[chunkhash].bundle.js',
       sourceMapFilename: 'js/[name].[chunkhash].bundle.map',
       chunkFilename: 'js/[id].[chunkhash].chunk.js' 
