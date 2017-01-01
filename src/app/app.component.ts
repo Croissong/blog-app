@@ -1,6 +1,5 @@
-import { Component, ElementRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ROUTES } from './app.routes';
-import 'index.css';
 
 @Component({
   selector: 'app',
@@ -10,22 +9,6 @@ import 'index.css';
   ],
   templateUrl: './app.component.html'
 })
-export class AppComponent extends AfterViewInit {
-  element: HTMLElement;
+export class AppComponent {
   routes = ROUTES;
-
-  constructor(element: ElementRef) {
-    super();
-    this.element = element.nativeElement;
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => this.activate());
-  }
-
-  activate() {
-    this.element.classList.remove('inactive');
-    this.element.previousElementSibling.classList.add('inactive');
-  }
-
 }

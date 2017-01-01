@@ -10,8 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const INITIAL_STATE = require('../src/api/mock_state.ts');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 
 
 const HMR = helpers.hasProcessFlag('hot');
@@ -54,18 +52,11 @@ module.exports = function (options) {
         },
         
         {
-          test: /^(?=.*\.css)(?!.*?index\.css).*/, 
+          test: /\.css$/, 
           use: ['to-string-loader',
                 {loader: 'css-loader', query: { importLoaders: 1 }},
                 'resolve-url-loader',
                 'postcss-loader']
-        },
-
-        {
-          test: /index\.css$/, 
-          loader: ExtractTextWebpackPlugin.extract({
-            loader: ['css-loader', 'postcss-loader']
-          })
         },
         
         {
@@ -108,27 +99,11 @@ module.exports = function (options) {
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
-
       
-      /*
-       * Plugin: CommonsChunkPlugin
-       * Description: Shares common code between the pages.
-       * It identifies common modules and put them into a commons chunk.
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-       * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
-       */
       new CommonsChunkPlugin({
         name: ['polyfills', 'vendor'].reverse()
       }),
 
-      /**
-       * Plugin: ContextReplacementPlugin
-       * Description: Provides context to Angular's use of System.import
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
-       * See: https://github.com/angular/angular/issues/11580
-       */
       new ContextReplacementPlugin(
         // The (\\|\/) piece accounts for path separators in *nix and Windows
           /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
@@ -161,8 +136,6 @@ module.exports = function (options) {
         defaultAttribute: 'defer'
       }),
 
-      new ExtractTextWebpackPlugin('index.css'),
-      new StyleExtHtmlWebpackPlugin(),
       
       /*
        * Plugin: HtmlElementsPlugin
