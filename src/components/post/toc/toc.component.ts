@@ -1,6 +1,6 @@
 import * as tocbot from 'tocbot';
 import * as anchor from 'anchor-js';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'toc',
@@ -8,11 +8,11 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: [ './toc.component.css' ],
   templateUrl: './toc.component.html'
 })
-export class TocComponent {
+export class TocComponent implements AfterViewInit, OnDestroy{
 
   constructor() {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     tocbot.init({
       tocSelector: 'toc',
       contentSelector: 'article',
@@ -21,5 +21,9 @@ export class TocComponent {
     });
 
     new anchor().add('h2, h3');
+  }
+
+  ngOnDestroy() {
+    tocbot.destroy()
   }
 }
