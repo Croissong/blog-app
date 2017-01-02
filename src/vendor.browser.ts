@@ -21,6 +21,10 @@ import '@angularclass/hmr';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+import 'tocbot';
+import 'anchor-js';
+
+
 if ('production' === ENV) {
   // Production
 
