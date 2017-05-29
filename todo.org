@@ -8,14 +8,24 @@ https://github.com/tscanlin/tocbot/
   https://github.com/bryanbraun/anchorjs
 - [ ] fix scroll lag (demo works better is better)
   - seperate header from article, toc and article same top position
+    https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html
 - [ ] fix missing left border (see demo)
   - ::before not showing
 * reselect
 https://github.com/ngrx/example-app/blob/master/src/app/reducers/index.ts
 * tests
 - app component loader
+* add codelyzer with styleguide checks
+* restructure app like styleguide
+* dynamic blogposts from db
+- aot vs / with https://github.com/laco0416/ng-dynamic
 * async posts
 - http://blog.thoughtram.io/angular/2016/10/10/resolving-route-data-in-angular-2.html
+* Aot
+- possible with server-side-rendering
+  http://stackoverflow.com/questions/40671399/angular2-aot-for-dynamic-html
+- lazy load compiler 
+  http://blog.assaf.co/angular-2-harmony-aot-compilation-with-lazy-jit-2/
 * Fix tests [1/1]
 - [X] fix lint errors
 - [ ] fix weird undefined import bug in test env
